@@ -14,12 +14,13 @@ RUN apt install python3-dev python3-pip python3-setuptools -y
 RUN python3 -m pip install --upgrade pip setuptools
 RUN python3 -m pip install numpy
 RUN python3 -m pip install --upgrade pip
-# OpenCV
+# install OpenCV
 RUN apt-get install -y libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6
 RUN python3 -m pip install opencv-python opencv-contrib-python
 
-# machine learningのライブラリをインストール
 RUN python3 -m pip install sklearn pandas pillow matplotlib
+# ffmpeg
+RUN pip install ffmpeg-python
 
 # jupyterを使用する場合は以下をインストール
 #RUN wget https://repo.continuum.io/achive/Anaconda3-2019.10-Linux-x86_64.sh && \
