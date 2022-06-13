@@ -1,3 +1,4 @@
+#  cv2.VideoCapture()が動かない
 FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
 # Update GPG key
@@ -21,15 +22,6 @@ RUN python3 -m pip install opencv-python opencv-contrib-python
 RUN python3 -m pip install sklearn pandas pillow matplotlib
 # ffmpeg
 RUN python3 -m pip install ffmpeg-python
-
-# jupyterを使用する場合は以下をインストール
-#RUN wget https://repo.continuum.io/achive/Anaconda3-2019.10-Linux-x86_64.sh && \
-#    sh Anaconda3-2019.10-Linux-x86_64.sh -b -p /opt/anaconda3 && \
-#    rm -f Anaconda3-2019.10-Linux-x86_64.sh
-#ENV PATH /opt/anaconda3/bin:$PATH
-
-#自分が自由に操作できるディレクトリを作成
-#WORKDIR /work/
 
 # コマンド指定
 CMD ["bin/bash"]
