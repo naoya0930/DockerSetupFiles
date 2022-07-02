@@ -1,4 +1,7 @@
+# REF: https://hub.docker.com/layers/jjanzic/docker-python3-opencv/contrib-opencv-4.0.1/images/sha256-f5c003f977b5f14dd4b477f9341124e9030a0e70f51691273a96c4cfe4e35006
 FROM python:3.9
+
+LABEL mantainer="Josip Janzic <josip@jjanzic.com>"
 
 WORKDIR /opt/build
 
@@ -22,8 +25,7 @@ RUN apt-get -qq update \
         libopenjp2-7-dev \
         libavformat-dev \
         libpq-dev \
-        ffmpeg \
-    && pip install numpy ffmpeg-python \
+    && pip install numpy \
     && wget -q https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip \
     && unzip -qq opencv.zip -d /opt \
     && rm -rf opencv.zip \
@@ -43,3 +45,4 @@ RUN apt-get -qq update \
         -D CMAKE_INSTALL_PREFIX=$(python3.9 -c "import sys; print(sys.prefix)") \
         -D PYTHON_EXECUTABLE=$(which python3.9) \
         -D PYTHON_INCLUDE_DIR=$(python3.9 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+        -D PYTHON_PACKAGES_PATH=$(python3.9 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
